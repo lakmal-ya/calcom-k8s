@@ -40,8 +40,8 @@ To deploy Calcom and PostgreSQL in Kubernetes, follow these steps:
    - Create a Calcom Deployment manifest YAML file with the appropriate environment variables, specifying the PostgreSQL database URL and other configuration details.
    - Use following commond to deploy the calcom
    ```
-   kubectl apply -f calcom-configmap.yaml -n calcom #to deploy the Calcom application ConfigMap.
-   kubectl apply -f calcom-deployment.yaml -n calcom #to deploy the Calcom application and Calcom services.
+   kubectl apply -f calcom-configmap.yaml      -n calcom  #to deploy the Calcom application ConfigMap.
+   kubectl apply -f calcom-deployment.yaml     -n calcom  #to deploy the Calcom application and Calcom services.
    ```
 
 Conclusion:
