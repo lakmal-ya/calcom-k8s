@@ -26,7 +26,7 @@ To deploy Calcom and PostgreSQL in Kubernetes, follow these steps:
 
 3. **Deploy PostgreSQL**:
    - Create a PostgreSQL Deployment and Service manifest YAML file with the necessary configuration, such as the database credentials and data storage options.All the details on **postgres-config.yaml**<br>
-   > **Note**(**change database POSTGRES_USER & POSTGRES_PASSWORD default user:admin & password: psltest**)
+   > :information_source:(**change database POSTGRES_USER & POSTGRES_PASSWORD default user:admin & password: psltest**)
    - Use kubectl apply -f postgres-deployment.yaml -n calcom to deploy PostgreSQL.
 
 4. **Expose PostgreSQL Service**:
