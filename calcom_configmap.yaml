@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: calcom-config
+  namespace: calcom
+data:
+  CALCOM_TELEMETRY_DISABLED: ""
+  CALENDSO_ENCRYPTION_KEY: encryptionkey
+  DATABASE_URL: "postgresql://admin:psltest@postgres:5432/calcomso"
+  NEXT_PUBLIC_LICENSE_CONSENT: ""
+  NEXT_PUBLIC_WEBAPP_URL: "https://<user_website_url>"
+  NEXTAUTH_SECRET: supersecret
+  NODE_ENV: production

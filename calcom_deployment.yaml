@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calcom
+  namespace: calcom
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calcom
+  template:
+    metadata:
+      labels:
+        app: calcom
+    spec:
+      containers:
+        - name: calcom
+          image: calcom.docker.scarf.sh/calcom/cal.com
+          volumeMounts:
+            - name: calcom-config-volume
+              mountPath: /app/config
+          ports:
+            - containerPort: 3000
+      volumes:
+        - name: calcom-config-volume
+          configMap:
+            name: calcom-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: calcom
+  namespace: calcom
+spec:
+  selector:
+    app: calcom
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studio
+  namespace: calcom
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: studio
+  template:
+    metadata:
+      labels:
+        app: studio
+    spec:
+      containers:
+        - name: studio
+          image: calcom.docker.scarf.sh/calcom/cal.com
+          volumeMounts:
+            - name: calcom-config-volume
+              mountPath: /app/config
+          ports:
+            - containerPort: 5555
+      volumes:
+        - name: calcom-config-volume
+          configMap:
+            name: calcom-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: studio
+  namespace: calcom
+spec:
+  selector:
+    app: studio
+  ports:
+    - protocol: TCP
+      port: 5555
+      targetPort: 5555

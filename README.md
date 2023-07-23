@@ -20,5 +20,26 @@ To deploy Calcom and PostgreSQL in Kubernetes, follow these steps:
    - Install Kubernetes on your local machine or preferred cloud provider.
    - Set up the necessary tools for managing Kubernetes, such as kubectl.
 
+2. **Create Kubernetes Namespace**:
+    - Start by creating a Kubernetes namespace to isolate the   Calcom and PostgreSQL resources.
+    - Use the kubectl create namespace calcom command to create the "calcom" namespace.
+
+3. **Deploy PostgreSQL**:
+   - Create a PostgreSQL Deployment and Service manifest YAML file with the necessary configuration, such as the database credentials and data storage options.All the details on **postgres-config.yaml**<br>
+   > **Note**(**change database POSTGRES_USER & POSTGRES_PASSWORD default user:admin & password: psltest**)
+   - Use kubectl apply -f postgres-deployment.yaml -n calcom to deploy PostgreSQL.
+
+4. **Expose PostgreSQL Service**:
+   - Expose the PostgreSQL Service to allow access from the Calcom application.
+   - Use kubectl expose deployment postgres -n calcom --port=5432 --type=ClusterIP to expose the service.
+
+5. **Create Calcom Deployment**:
+   - Create a Calcom Deployment manifest YAML file with the appropriate environment variables, specifying the PostgreSQL database URL and other configuration details.
+   - Use kubectl apply -f calcom-deployment.yaml -n calcom to deploy the Calcom application.
+
+6. **Expose Calcom Service**:
+   - Expose the Calcom Service to enable access to the application from outside the Kubernetes cluster.
+   - Use kubectl expose deployment calcom -n calcom --port=80 --type=LoadBalancer to expose the service.
+
 Conclusion:
 By setting up Calcom and PostgreSQL in Kubernetes, you can harness the power of these robust tools to streamline scheduling and data management. The Calcom application offers an intuitive interface, empowering users to efficiently manage events and availability. PostgreSQL complements Calcom with its scalability and extensibility, providing a reliable and powerful backend for managing data. Together, they form a dynamic duo, supporting individuals and teams alike in staying organized and maximizing productivity. Whether you're a busy professional or a team collaborating on projects, the Calcom and PostgreSQL setup in Kubernetes offers an effective solution for optimized scheduling and data management.
